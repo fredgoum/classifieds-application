@@ -1,12 +1,25 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-// Manage CORS (Cross Origin Resource Sharing)
+/* Manage CORS (Cross Origin Resource Sharing) */
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
+});
+
+/* Extracts JSON object from data sent by user */
+app.use(bodyParser.json());
+
+/* POST */
+app.post('/api/stuff', (req, res, next) => {
+  console.log(req.body);
+  res.status(201).json({
+    message: 'Objet créé !'
+  });
 });
 
 app.use('/api/stuff', (req, res, next) => {
