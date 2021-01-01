@@ -1,7 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+
+/* Connection to MongoDB */
+mongoose.connect('mongodb+srv://ag:ag2021@cluster0.1bxz8.mongodb.net/cluster0?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 /* Manage CORS (Cross Origin Resource Sharing) */
 app.use((req, res, next) => {
