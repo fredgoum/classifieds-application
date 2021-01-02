@@ -1,0 +1,13 @@
+const express = require('express');
+const router = express.Router();
+
+const stuffCtrl = require('../controllers/stuff');
+
+/* CRUD Methods */
+router.post('/', stuffCtrl.createThing);
+router.get('/', stuffCtrl.getAllThing);
+router.get('/:id', stuffCtrl.getOneThing);
+router.put('/:id', stuffCtrl.modifyThing);
+router.delete('/:id', stuffCtrl.deleteThing);
+
+module.exports = router;
